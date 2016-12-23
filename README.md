@@ -11,7 +11,8 @@ before starting, be sure to have pro in your PATH,
 # A simple modular application
 
 Let say we want to create a simple application that is able to print some messages.
-These messages can be printed on the console, using a logger, etc, so we want to be able at deployment time to choose which kind of of Printer should be used.
+These messages can be printed on the console, using a logger, etc, so we want to be able at deployment time to choose
+which kind of of Printer should be used.
 
 For the demo, let's pretend that it's a good idea to define 3 modules
  - the main module *printer.main*, which contains the main
@@ -49,11 +50,13 @@ the folder [src/main/java](src/main/java) contains the 3 modules *printer.main*,
 
 ## Module printer.api
 
-The module-info.java defines the *modules required* (using the directive __requires__) and the *package exported* (using the directive __exports__).
+The module-info.java defines the *modules required* (using the directive __requires__) and the *package exported*
+(using the directive __exports__).
 
-Here, there is no module required (*java.base* is required by default) so the [module-info.java](src/main/java/printer.main/module-info.java)
-of *printer.api* only contains one directive __exports__
-```java
+Here, there is no module required (*java.base* is required by default) so the
+[module-info.java](src/main/java/printer.main/module-info.java) of *printer.api*
+only contains one directive __exports__
+```
 module printer.api {
   exports com.acme.printer.api;
 }
@@ -61,14 +64,13 @@ module printer.api {
 
 ## Module printer.main
 
-Again, the module-info defines the module requires and the packages exported.
-Here, printer.main use the interface com.acme.printer.api.Printer so it requires printer.api, the module that contains the package com.acme.printer.api.
-We do not declare the package com.acme.printer.main as exported, so it will be non visible for the other module.
+Again, the module-info defines the module __requires__ and the packages __exported__.
+Here, the module *printer.main* uses the interface *com.acme.printer.api.Printer* so it requires the module *printer.api*, i.e. the module that contains the package *com.acme.printer.api*.
+We do not declare the package *com.acme.printer.main* as exported, so it will be non visible for the other modules.
 
-Furthermore, we use the service mechanism provided by the module. If a module declare a directive use with an interface,
-it can use the class java.util.ServiceLoader to discover at runtime all the implementations of the service.
+Furthermore, we use the __service__ mechanism provided by the module descriptor. If a module declare a directive __uses__ with an interface (a __service__ interface), it can use the class *java.util.ServiceLoader* to discover at runtime all the implementations of the interface (the implementation of the __service__).
 
-So here, the Main class will use the ServiceLoader with the interface com.acme.printer.api.Printer.
+So here, the Main class will use the ServiceLoader with the interface *com.acme.printer.api.Printer*.
 ```
 module printer.main {
   requires printer.api;
@@ -79,15 +81,16 @@ module printer.main {
 
 ## Module printer.logger
 
-Here, we want to implements the interface Printer which is defined in the module printer.api and we want to implement it with java.util.logging API,
-defined in the module java.logging. So the module-info requires java.logging and printer.api.
-We also want the class com.acme.printer.logger.PrinterFactory to be visible by the other modules, so we declare the package com.acme.printer.logger as exported.
+Here, we want to implements the interface *com.acme.printer.api.Printer* which is defined in the module *printer.api* and we want to implement it using the *java.util.logging* API (defined in the module *java.logging*).
+So the [module-info](rc/main/java/printer.logger/module-info.java)
+__requires__ *java.logging* and *printer.api*.
+We also want the class *com.acme.printer.logger.PrinterFactory* to be visible by the other modules, so we declare the package *com.acme.printer.logger* as exported.
 
-Because, we export the class com.acme.printer.logger.PrinterFactory and this class has a public method (provider) that uses a type from the module printer.api,
-we declare printer.api with the directive requires transitive so if a module requires printer.logger, it will not have to also requires printer.api.  
+Because,the class *com.acme.printer.logger.PrinterFactory* is public and exported and
+this class has a public method (named 'provider') that uses a type from the module *printer.api*,
+we declare *printer.api* with the directive __requires transitive__ so if a module __requires__ *printer.logger*, it will not have to also __requires__ *printer.api*.  
 
-This module provide an implementation of the service com.acme.printer.api.Printer, so we use the directive provides to indicate the class
-com.acme.printer.logger.PrinterFactory that will act as a factory that provides an implementation of the interface com.acme.printer.api.Printer.
+This module also __provides__ an implementation of the __service__ *com.acme.printer.api.Printer*, we use the directive __provides__ to indicate the class *com.acme.printer.logger.PrinterFactory* that will act as a factory that provides an implementation of the interface *com.acme.printer.api.Printer*.
 ```
 module printer.logger {
   requires java.logging;
@@ -107,16 +110,16 @@ Perhaps the simplest way to use pro is to use is to use its REPL,
 $ pro shell
 ```
 
-by default you need to import all the commands of pro that are defined as function inside the class com.github.forax.pro.Pro
+by default you need to import all the commands of __pro__ that are defined as functions inside the class *com.github.forax.pro.Pro*
 ```
 jshell> import static com.github.forax.pro.Pro.*
 ```
 
-now, you can use the function run to run the different plugins of pro, by example
+now, you can use the function 'run' to run the different plugins of __pro__, by example
 ```
 jshell> run("compiler")
 ```
-will run the java compiler on all the sources inside the folder src/main/java.
+will run the java compiler on all the sources inside the folder *src/main/java*.
 
 The result on your console should be something like that
 ```
@@ -124,29 +127,29 @@ The result on your console should be something like that
 [pro] DONE !          elapsed time 1,064 ms
   
 ```
-The classes of the modules generated by the compiler are stored in target/src/exploded.
-From the REPL, you can get all the class files using the function files
+The classes of the modules generated by the compiler are stored in *target/src/exploded*.
+From the REPL, you can get all the class files using the functio 'files'
 ```
 jshell> files(location("target/src/exploded"), perlRegex(".*\\.class"))  
 ``` 
 
-The result is a Java list of all paths inside the folder printer.main 
+The result is a Java list of all paths inside the folder *printer.main*. 
 ```
 $3 ==> [target/src/exploded/printer.logger/module-info.class, target/src/exploded/printer.logger/com/acme/printer/logger/PrinterFactory.class, ..., target/src/exploded/printer.api/com/acme/printer/api/Printer.class]
 ```
 
-Now, instead of just compiling, we can compile and packages all the classes in modular jars
+Now, instead of just compiling, we can compile and package all the classes in modular jars
 ```
 jshell> run("compiler", "packager")
 ```
 
-The result is stored in folder target/src/artifact
+The result is stored in folder *target/src/artifact*
 ```
 jshell> files(location("target/src/artifact"))
 $6 ==> [target/src/artifact, target/src/artifact/printer.logger-1.0.jar, target/src/artifact/printer.main-1.0.jar, target/src/artifact/printer.api-1.0.jar]
 ```
 
-If we want to run the application, we first need to declare the version of the module and which module declares a main class by setting the packager.moduleMetadata 
+If we want to run the application, we first need to declare the version of the module and which module declares the main class by setting the value of the attribute *packager.moduleMetadata* 
 ```
 set("packager.moduleMetadata", list("printer.main@1.0/com.acme.printer.main.Main"))
 ```
@@ -157,7 +160,7 @@ jshell> run("compiler", "packager", "runner")
 
 ```
 
-Congratulation, you have run your first modular application with pro !
+Congratulation, you have run your first modular application with __pro__ !
 
 To exit the shell
 ```
