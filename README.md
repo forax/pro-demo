@@ -51,8 +51,9 @@ the folder [src/main/java](src/main/java) contains the 3 modules *printer.main*,
 
 The module-info.java defines the *modules required* (using the directive __requires__) and the *package exported* (using the directive __exports__).
 
-Here, there is no module required (*java.base* is required by default) so the [module-info.java](src/main/java/printer.main/module-info.java) of the module printer.api only contains one directive exports
-```
+Here, there is no module required (*java.base* is required by default) so the [module-info.java](src/main/java/printer.main/module-info.java)
+of *printer.api* only contains one directive __exports__
+```java
 module printer.api {
   exports com.acme.printer.api;
 }
