@@ -14,9 +14,9 @@ Let say we want to create a simple application that is able to print some messag
 These messages can be printed on the console, using a logger, etc, so we want to be able at deployment time to choose which kind of of Printer should be used.
 
 For the demo, let's pretend that it's a good idea to define 3 modules
- - the main module printer.main, which contains the main
- - the API module printer.api, which defines the interface Printer
- - the factory module printer.logger that provide one implementation of the Printer interface using the java.logging API.
+ - the main module *printer.main*, which contains the main
+ - the API module *printer.api*, which defines the interface Printer
+ - the factory module *printer.logger* that provide one implementation of the Printer interface using the java.logging API.
  
 On disk, the layout is the following
 ```
@@ -45,13 +45,13 @@ On disk, the layout is the following
                logger
                  PrinterFactory.java      
 ```
-the folder src/main/java contains the 3 modules printer.main, printer.api and printer.logger
+the folder [src/main/java](src/main/java) contains the 3 modules *printer.main*, *printer.api* and *printer.logger*
 
 ## Module printer.api
 
-The module-info.java defines the modules required (using the directive requires) and the package exported (using the directive exports).
+The module-info.java defines the *modules required* (using the directive __requires__) and the *package exported* (using the directive __exports__).
 
-Here, there is no module required (java.base is required by default) so the [module-info.java]() of the module printer.api only contains one directive exports
+Here, there is no module required (*java.base* is required by default) so the [module-info.java](src/main/java/printer.main/module-info.java) of the module printer.api only contains one directive exports
 ```
 module printer.api {
   exports com.acme.printer.api;
