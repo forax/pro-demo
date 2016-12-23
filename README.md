@@ -24,23 +24,26 @@ On disk, the layout is the following
    main
      java
        printer.main        <- module name
+         module-info.java  <- module descriptor
          com
            acme
              printer
                main        <- package name
                  Main.java
        printer.api         
+         module-info.java
          com    
            acme
              printer
                api
                  Printer.java
        printer.logger
+         module-info.java
          com
            acme
              printer
                logger
-                 PrinterFactory         
+                 PrinterFactory.java      
 ```
 the folder src/main/java contains the 3 modules printer.main, printer.api and printer.logger
 
@@ -48,7 +51,7 @@ the folder src/main/java contains the 3 modules printer.main, printer.api and pr
 
 The module-info.java defines the modules required (using the directive requires) and the package exported (using the directive exports).
 
-Here, there is no module required (java.base is required by default) so the module-info.java only contains one directive exports
+Here, there is no module required (java.base is required by default) so the [module-info.java]() of the module printer.api only contains one directive exports
 ```
 module printer.api {
   exports com.acme.printer.api;
