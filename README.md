@@ -169,7 +169,7 @@ To exit the shell
 
 # Using the command line
 
-You can record all the build information info one JSON file named build.json
+You can record all the build information info one JSON file named __build.json__
 ```
 {
   packager: {
