@@ -108,7 +108,7 @@ by default you need to import all the commands of pro that are defined as functi
 jshell> import static com.github.forax.pro.Pro.*
 ```
 
-now, you can use the function run to run the different plugins of pro, by exemple
+now, you can use the function run to run the different plugins of pro, by example
 ```
 jshell> run("compiler")
 ```
@@ -131,7 +131,7 @@ The result is a Java list of all paths inside the folder printer.main
 $3 ==> [target/src/exploded/printer.logger/module-info.class, target/src/exploded/printer.logger/com/acme/printer/logger/PrinterFactory.class, ..., target/src/exploded/printer.api/com/acme/printer/api/Printer.class]
 ```
 
-Now, instead of just compiling, we can compile and packages all the classes in module jars
+Now, instead of just compiling, we can compile and packages all the classes in modular jars
 ```
 jshell> run("compiler", "packager")
 ```
@@ -142,7 +142,7 @@ jshell> files(location("target/src/artifact"))
 $6 ==> [target/src/artifact, target/src/artifact/printer.logger-1.0.jar, target/src/artifact/printer.main-1.0.jar, target/src/artifact/printer.api-1.0.jar]
 ```
 
-If we want to run the application, we first need to declare the version of the module and which module declares a main class by seeting the packager.moduleMetadata 
+If we want to run the application, we first need to declare the version of the module and which module declares a main class by setting the packager.moduleMetadata 
 ```
 set("packager.moduleMetadata", list("printer.main@1.0/com.acme.printer.main.Main"))
 ```
@@ -162,7 +162,7 @@ To exit the shell
 
 # Using the command line
 
-You can record all the build information info one json file named build.json
+You can record all the build information info one JSON file named build.json
 ```
 {
   packager: {
