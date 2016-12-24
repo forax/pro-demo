@@ -48,7 +48,7 @@ On disk, the layout is the following
 ```
 the folder [src/main/java](src/main/java) contains the 3 modules *printer.main*, *printer.api* and *printer.logger*
 
-## Module printer.api
+### Module printer.api
 
 The module-info.java defines the *modules required* (using the directive __requires__) and the *package exported*
 (using the directive __exports__).
@@ -62,7 +62,7 @@ module printer.api {
 }
 ```
 
-## Module printer.main
+### Module printer.main
 
 Again, the module-info defines the module __requires__ and the packages __exported__.
 Here, the module *printer.main* uses the interface *com.acme.printer.api.Printer* so it requires the module *printer.api*, i.e. the module that contains the package *com.acme.printer.api*.
@@ -79,7 +79,7 @@ module printer.main {
 }
 ```
 
-## Module printer.logger
+### Module printer.logger
 
 Here, we want to implements the interface *com.acme.printer.api.Printer* which is defined in the module *printer.api* and we want to implement it using the *java.util.logging* API (defined in the module *java.logging*).
 So the [module-info](rc/main/java/printer.logger/module-info.java)
