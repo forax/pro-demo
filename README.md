@@ -188,3 +188,27 @@ And just run it
 $ pro 
 ```
 
+
+# Using the daemon mode
+
+In daemon mode, __pro__ asks the file system to call __pro__ when one file among the inputs of the first plugin
+specified by 'run' (here the inputs of *compiler*) has changed, in that case, __pro__ will run all the specified plugin.
+
+```
+$ pro daemon
+```
+
+By example if a file change in src/main/java
+```
+$ touch src/main/java/printer.main/module-info.java
+```
+
+pro will run all the plugins
+```
+Dec 24, 2016 3:15:09 PM com.acme.printer.main.Main main
+INFO: hello world !
+[daemon] DONE !
+```
+
+You can stop pro using Control C !
+
