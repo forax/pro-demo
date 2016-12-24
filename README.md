@@ -206,7 +206,7 @@ By example if a file change in src/main/java
 $ touch src/main/java/printer.main/module-info.java
 ```
 
-pro will run all the plugins
+pro will run all the plugins specified in __build.json__.
 ```
 Dec 24, 2016 3:15:09 PM com.acme.printer.main.Main main
 INFO: hello world !
