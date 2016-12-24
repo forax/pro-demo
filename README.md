@@ -1,9 +1,9 @@
 # pro-demo
-a simple demo of how to use [pro](https://github.com/forax/pro)
+A simple demo of how to use [pro](https://github.com/forax/pro)
 
 ## Foreword 
 
-before starting, be sure to have pro in your PATH,
+Before starting, be sure to have pro in your PATH,
 ```
   export PATH=$PATH:/path/to/pro/bin/pro
 ```
@@ -110,12 +110,12 @@ Perhaps the simplest way to use pro is to use is to use its REPL,
 $ pro shell
 ```
 
-by default you need to import all the commands of __pro__ that are defined as functions inside the class *com.github.forax.pro.Pro*
+By default you need to import all the commands of __pro__ that are defined as functions inside the class *com.github.forax.pro.Pro*
 ```
 jshell> import static com.github.forax.pro.Pro.*
 ```
 
-now, you can use the function 'run' to run the different plugins of __pro__, by example
+Now, you can use the function 'run' to run the different plugins of __pro__, by example
 ```
 jshell> run("compiler")
 ```
