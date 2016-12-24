@@ -221,7 +221,7 @@ You can stop pro using Control C !
 By default, the log level is "info" which prints only minimal information, if you want to know by example
 what commands are run by __pro__, you can change the log level. Available log levels are "debug", "verbose" and "info".
 
-### the environment variable PRO_LOG_LEVEL
+#### The environment variable PRO_LOG_LEVEL
 ```
 $ PRO_LOG_LEVEL="verbose" pro
 [compiler] javac --release 9
@@ -247,7 +247,7 @@ INFO: hello world !
 [pro] DONE !          elapsed time 1,537 ms
 ```
 
-### the config value
+#### The configuration value loglevel
 ```
 $ pro shell
 jshell> import static com.github.forax.pro.Pro.*
