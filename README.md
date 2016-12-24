@@ -234,7 +234,8 @@ $ PRO_LOG_LEVEL="verbose" pro
                -C target/src/exploded/printer.logger
                .
 [packager] jar --create --file target/src/artifact/printer.main-1.0.jar
-               --module-version 1.0 --main-class com.acme.printer.main.Main
+               --module-version 1.0
+               --main-class com.acme.printer.main.Main
                -C target/src/exploded/printer.main
                .
 [packager] jar --create
@@ -265,6 +266,7 @@ jshell> run("compiler", "packager")
 [packager] jar --create
                --file target/src/artifact/printer.main-1.0.jar
                --module-version 1.0
+               --main-class com.acme.printer.main.Main
                -C target/src/exploded/printer.main
                .
 [packager] jar --create
