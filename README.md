@@ -186,6 +186,9 @@ You can record all the build information info one JSON file named __build.json__
 And just run it
 ```
 $ pro 
+Dec 24, 2016 3:23:04 PM com.acme.printer.main.Main main
+INFO: hello world !
+[pro] DONE !          elapsed time 1,590 ms
 ```
 
 
