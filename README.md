@@ -215,3 +215,33 @@ INFO: hello world !
 
 You can stop pro using Control C !
 
+
+# Log levels
+
+By default, the log level is "info" which prints only minimal information, if you want to know by example
+what commands are run by __pro__, you can change the log level. Available log levels are "debug", "verbose" and "info".
+
+### the environment variable PRO_LOG_LEVEL
+```
+$ PRO_LOG_LEVEL="verbose" pro
+[compiler] javac --release 9 -d target/src/exploded --module-source-path src/main/java src/main/java/printer.logger/module-info.java ...
+[packager] jar --create --file target/src/artifact/printer.logger-1.0.jar --module-version 1.0 -C target/src/exploded/printer.logger .
+[packager] jar --create --file target/src/artifact/printer.main-1.0.jar --module-version 1.0 --main-class com.acme.printer.main.Main -C target/src/exploded/printer.main .
+[packager] jar --create --file target/src/artifact/printer.api-1.0.jar --module-version 1.0 -C target/src/exploded/printer.api .
+Dec 24, 2016 3:44:08 PM com.acme.printer.main.Main main
+INFO: hello world !
+[pro] DONE !          elapsed time 1,537 ms
+```
+
+### the config value
+```
+$ pro shell
+jshell> import static com.github.forax.pro.Pro.*
+jshell> set("loglevel", "verbose")
+jshell> run("compiler", "packager")
+[compiler] javac --release 9 -d target/src/exploded --module-source-path src/main/java src/main/java/printer.logger/module-info.java ...
+[packager] jar --create --file target/src/artifact/printer.logger-1.0.jar --module-version 1.0 -C target/src/exploded/printer.logger .
+[packager] jar --create --file target/src/artifact/printer.main-1.0.jar --module-version 1.0 -C target/src/exploded/printer.main .
+[packager] jar --create --file target/src/artifact/printer.api-1.0.jar --module-version 1.0 -C target/src/exploded/printer.api .
+```
+
