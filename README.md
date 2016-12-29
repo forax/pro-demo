@@ -252,7 +252,7 @@ INFO: hello world !
 ```
 $ pro shell
 jshell> import static com.github.forax.pro.Pro.*
-jshell> set("loglevel", "verbose")
+jshell> set("pro.loglevel", "verbose")
 jshell> run("compiler", "packager")
 [compiler] javac --release 9
                  -d target/src/exploded
