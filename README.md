@@ -115,9 +115,15 @@ By default you need to import all the commands of __pro__ that are defined as fu
 jshell> import static com.github.forax.pro.Pro.*
 ```
 
+While the functions in Pro are enough to build something, the API is string based, so we will also import the builders API,
+which is a typesafe API
+```
+jshell> import static com.github.forax.pro.builder.Builders.*
+```
+
 Now, you can use the function 'run' to run the different plugins of __pro__, by example
 ```
-jshell> run("compiler")
+jshell> run(compiler)
 ```
 will run the java compiler on all the sources inside the folder *src/main/java*.
 
@@ -140,7 +146,7 @@ $3 ==> [target/main/exploded/printer.logger/module-info.class, ...]
 
 Now, instead of just compiling, we can compile and package all the classes in modular jars
 ```
-jshell> run("compiler", "packager")
+jshell> run(compiler, packager)
 ```
 
 The result is stored in folder *target/main/artifact*
@@ -151,16 +157,21 @@ $6 ==> [target/main/artifact, target/main/artifact/printer.logger-1.0.jar, ...]
 
 If we want to run the application, we first need to declare the version of the module and which module declares the main class by setting the value of the attribute *packager.moduleMetadata* 
 ```
-set("packager.moduleMetadata", list("printer.main@1.0/com.acme.printer.main.Main"))
+packager.moduleMetadata(list("printer.main@1.0/com.acme.printer.main.Main"))
 ```
 
 And then re-package the application and run it
 ```
-jshell> run("compiler", "packager", "runner")
+jshell> run(compiler, packager, runner)
 
 ```
 
 Congratulation, you have run your first modular application with __pro__ !
+
+You can save the script you have previously written using
+```
+\save build.pro
+```
 
 To exit the shell
 ```
@@ -169,18 +180,19 @@ To exit the shell
 
 # Using the command line
 
-You can record all the build information info one JSON file named __build.json__
+You can record all the build information info one file named __build.pro
 ```
-{
-  packager: {
-    moduleMetadata: [
-      "printer.main@1.0/com.acme.printer.main.Main",
-      "printer.api@1.0",
-      "printer.factory@1.0",
-    ]
-  },
-  run: ["compiler", "packager", "runner"]
-}
+import static com.github.forax.pro.Pro.*
+import static com.github.forax.pro.builder.Builders.*
+
+packager.
+  moduleMetadata(list(
+    "printer.main@1.0/com.acme.printer.main.Main",
+    "printer.api@1.0",
+    "printer.factory@1.0" 
+  ))
+
+run(compiler, packager, runner)
 ```
 
 And just run it
@@ -206,7 +218,7 @@ By example if a file change in src/main/java
 $ touch src/main/java/printer.main/module-info.java
 ```
 
-pro will run all the plugins specified in __build.json__.
+pro will run all the plugins specified in __build.pro__.
 ```
 Dec 24, 2016 3:15:09 PM com.acme.printer.main.Main main
 INFO: hello world !
@@ -252,8 +264,9 @@ INFO: hello world !
 ```
 $ pro shell
 jshell> import static com.github.forax.pro.Pro.*
-jshell> set("pro.loglevel", "verbose")
-jshell> run("compiler", "packager")
+jshell> import static com.github.forax.pro.builder.Builders.*
+jshell> pro.loglevel("verbose")
+jshell> run(compiler, packager)
 [compiler] javac --release 9
                  -d target/main/exploded
                  --module-source-path src/main/java
