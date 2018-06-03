@@ -1,4 +1,5 @@
 sudo: false
+language: java
 
 matrix:
   include:
@@ -11,6 +12,7 @@ install:
 - export PATH=$PATH:`pwd`/pro/bin
 
 script:
+- echo build $DEMO
 - cd $DEMO
 - pro
 
