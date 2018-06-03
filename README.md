@@ -46,7 +46,7 @@ On disk, the layout is the following
                logger
                  PrinterFactory.java      
 ```
-the folder [src/main/java](src/main/java) contains the 3 modules *printer.main*, *printer.api* and *printer.logger*
+the folder [src/main/java](pro-demo/src/main/java) contains the 3 modules *printer.main*, *printer.api* and *printer.logger*
 
 ### Module printer.api
 
@@ -54,7 +54,7 @@ The module-info.java defines the *modules required* (using the directive __requi
 (using the directive __exports__).
 
 Here, there is no module required (*java.base* is required by default) so the
-[module-info.java](src/main/java/printer.main/module-info.java) of *printer.api*
+[module-info.java](pro-demo/src/main/java/printer.main/module-info.java) of *printer.api*
 only contains one directive __exports__
 ```
 module printer.api {
@@ -64,7 +64,7 @@ module printer.api {
 
 ### Module printer.main
 
-Again, the [module-info](src/main/java/printer.main/module-info.java) defines the module __requires__ and the packages __exported__.
+Again, the [module-info](pro-demo/src/main/java/printer.main/module-info.java) defines the module __requires__ and the packages __exported__.
 Here, the module *printer.main* uses the interface *com.acme.printer.api.Printer* so it requires the module *printer.api*, i.e. the module that contains the package *com.acme.printer.api*.
 We do not declare the package *com.acme.printer.main* as exported, so it will be non visible for the other modules.
 
@@ -82,7 +82,7 @@ module printer.main {
 ### Module printer.logger
 
 Here, we want to implements the interface *com.acme.printer.api.Printer* which is defined in the module *printer.api* and we want to implement it using the *java.util.logging* API (defined in the module *java.logging*).
-So the [module-info](src/main/java/printer.logger/module-info.java)
+So the [module-info](pro-demo/src/main/java/printer.logger/module-info.java)
 __requires__ *java.logging* and *printer.api*.
 We also want the class *com.acme.printer.logger.PrinterFactory* to be visible by the other modules, so we declare the package *com.acme.printer.logger* as exported.
 
