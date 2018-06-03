@@ -5,7 +5,7 @@ language: java
 install:
 - wget --no-check-certificate https://github.com/forax/pro/releases/download/0.10-18/pro-linux-early-access.zip
 - unzip pro-linux-early-access.zip
-- export PATH=$PATH:pro/bin
+- export PATH=$PATH:`pwd`/pro/bin
 
 matrix:
   include:
