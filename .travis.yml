@@ -5,13 +5,15 @@ language: java
 install:
 - wget --no-check-certificate https://github.com/forax/pro/releases/download/0.10-18/pro-linux-early-access.zip
 - unzip pro-linux-early-access.zip
+- export PATH=$PATH:pro/bin/pro
+
+matrix:
+  include:
+    -env: DEMO='printer-demo'
+    -env: DEMO='spring-demo'
 
 script:
-- cd printer-demo
-- ../pro/bin/pro
-- cd ..
-- cd spring-demo
-- ../pro/bin/pro
-- cd ..
+- cd $DEMO
+- pro
 
 
