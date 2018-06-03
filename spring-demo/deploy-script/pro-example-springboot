@@ -1,0 +1,4 @@
+#!/bin/sh
+JLINK_VM_OPTIONS="--add-opens java.base/java.lang=spring.core"
+DIR=`dirname $0`
+$DIR/java $JLINK_VM_OPTIONS -m com.github.forax.pro.example.springboot/com.github.forax.pro.example.springboot.DemoApplication $@

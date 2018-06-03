@@ -6,7 +6,7 @@ import static com.github.forax.pro.helper.FileHelper.*;
 var distribute = command(() -> {
   deleteAllFiles(location("pro-example-springboot"), true);
   delete(location("target/image/bin/com.github.forax.pro.example.springboot"));
-  copy(location("build/pro-example-springboot"), location("target/image/bin/pro-example-springboot"));
+  copy(location("deploy-script/pro-example-springboot"), location("target/image/bin/pro-example-springboot"));
   move(location("target/image"), location("pro-example-springboot"));
 });
 
