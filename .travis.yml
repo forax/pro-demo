@@ -9,8 +9,11 @@ install:
 
 matrix:
   include:
-    -env: DEMO='printer-demo'
-    -env: DEMO='spring-demo'
+    - env: DEMO='printer-demo'
+      export DEMO='printer-demo'
+    
+    - env: DEMO='spring-demo'
+      export DEMO='spring-demo'
 
 script:
 - cd $DEMO
