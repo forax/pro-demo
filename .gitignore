@@ -17,6 +17,9 @@ hs_err_pid*
 .settings
 bin
 
+# idea files
+.idea/
+
 # pro files
 target
 deps
