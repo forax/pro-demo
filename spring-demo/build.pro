@@ -11,29 +11,29 @@ var distribute = command(() -> {
 });
 
 resolver.
-    //checkForUpdate(true).
+    checkForUpdate(true).
     dependencies(   
         // Spring Boot + autoconfigure + Spring Web MVC
         "spring.boot=org.springframework.boot:spring-boot:2.0.2.RELEASE",
         "spring.boot.autoconfigure=org.springframework.boot:spring-boot-autoconfigure:2.0.2.RELEASE",
-        "spring.aop:5.0.6.RELEASE",
-        "spring.beans:5.0.6.RELEASE", 
-        "spring.context:5.0.6.RELEASE",
-        "spring.core:5.0.6.RELEASE",
-        "spring.expression:5.0.6.RELEASE",
-        "spring.jcl:5.0.6.RELEASE",
-        "spring.web=org.springframework:spring-web:5.0.6.RELEASE",
-        "spring.webmvc=org.springframework:spring-webmvc:5.0.6.RELEASE",
+        "spring.aop:5.0.7.RELEASE",
+        "spring.beans:5.0.7.RELEASE", 
+        "spring.context:5.0.7.RELEASE",
+        "spring.core:5.0.7.RELEASE",
+        "spring.expression:5.0.7.RELEASE",
+        "spring.jcl:5.0.7.RELEASE",
+        "spring.web=org.springframework:spring-web:5.0.7.RELEASE",
+        "spring.webmvc=org.springframework:spring-webmvc:5.0.7.RELEASE",
         
         // Tomcat Embeded
         "org.apache.tomcat.embed.core=org.apache.tomcat.embed:tomcat-embed-core:9.0.8",
         "org.apache.tomcat.annotations.api=org.apache.tomcat:tomcat-annotations-api:9.0.8",
         
         // Jackson core + datatype.jdk8
-        "com.fasterxml.jackson.core:2.9.5",
-        "com.fasterxml.jackson.databind:2.9.5",
-        "com.fasterxml.jackson.datatype.jdk8=com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.5",
-        "com.fasterxml.jackson.annotations=com.fasterxml.jackson.core:jackson-annotations:2.9.5" /*,*/
+        "com.fasterxml.jackson.core:2.9.6",
+        "com.fasterxml.jackson.databind:2.9.6",
+        "com.fasterxml.jackson.datatype.jdk8=com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.6",
+        "com.fasterxml.jackson.annotations=com.fasterxml.jackson.core:jackson-annotations:2.9.6" /*,*/
     )
 
 packager.
