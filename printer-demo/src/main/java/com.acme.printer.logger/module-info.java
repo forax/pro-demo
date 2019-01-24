@@ -1,6 +1,6 @@
-module printer.logger {
+module com.acme.printer.logger {
   requires java.logging;
-  requires transitive printer.api;
+  requires transitive com.acme.printer.api;
   
   exports com.acme.printer.logger;
   
