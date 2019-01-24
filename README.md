@@ -3,9 +3,15 @@ A simple demo of how to use [pro](https://github.com/forax/pro)
 
 ## Foreword 
 
-Before starting, be sure to have pro in your PATH,
+Before starting, you have to get pro, you can either [download a release](https://github.com/forax/pro/releases) on Github or
+use the pro_wrapper (the wrapper requires Java 11 to run)
 ```
-  export PATH=$PATH:/path/to/pro/bin/pro
+  java pro_wrapper.java
+```
+
+then add pro in your PATH,
+```
+  export PATH=$PATH:`pwd`/pro/bin
 ```
 
 # A simple modular application
